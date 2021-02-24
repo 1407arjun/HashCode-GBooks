@@ -30,7 +30,7 @@ for i in range (0, L):
     score = 0
     for j in range(0, num_of_books[i]):
         score += book_score[lib[i][j]]
-    property_to_sort.append(score//ship[i])
+    property_to_sort.append(score)
 score = 0
 temp2 = property_to_sort.copy()
 temp2.sort()
