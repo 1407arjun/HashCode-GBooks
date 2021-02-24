@@ -38,7 +38,7 @@ temp2.reverse()
 sign_dates = {}
 for i in temp2:
     d = property_to_sort.index(i)
-    if days + sign_up_days[d] <= D:
+    if days + sign_up_days[d] < D:
         sign_up.append(d)
         days += sign_up_days[d]
         sign_dates[d] = days
@@ -55,7 +55,7 @@ for i in sign_up:
     n = 0
     temp = []
     while True:
-        if sign_dates[i] + ship[i] <= D:
+        if sign_dates[i] + ship[i] < D:
             j = 0
             while (j < ship[i]): # and counter < len(lib[i])
                 if counter + j < len(lib[i]): 
