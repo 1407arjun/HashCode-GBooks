@@ -1,19 +1,20 @@
-z = list(map(int, input().split()))
+file = open("b_read_on.txt")
+z = list(map(int, file.readline().split()))
 B = z[0]
 L = z[1]
 D = z[2]
-book_score = list(map(int, input().split()))
+book_score = list(map(int, file.readline().split()))
 lib = []
 num_of_books = []
 sign_up_days = []
 ship = []
 for i in range(0, L):
-    x = list(map(int, input().split()))
+    x = list(map(int, file.readline().split()))
     num_of_books.append(x[0])
     sign_up_days.append(x[1])
     ship.append(x[2])
     sorter = {}
-    y = list(map(int, input().split()))
+    y = list(map(int, file.readline().split()))
     for j in y:
         sorter[book_score[j]] = j
     l = list(sorter.items())
@@ -26,9 +27,12 @@ for i in range(0, L):
 sign_up = []
 days = 0
 property_to_sort = []
+print(len(book_score))
+print(lib)
 for i in range (0, L):
     score = 0
     for j in range(0, num_of_books[i]):
+        print(i, j)
         score += book_score[lib[i][j]]
     property_to_sort.append(score)
 score = 0
