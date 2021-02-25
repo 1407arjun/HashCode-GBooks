@@ -34,9 +34,10 @@ while True:
         property_to_sort = {}
         for i in lib:
             score = 0
-            for j in range(0, len(lib[i])):
-                score += book_score[lib[i][j]]
-            property_to_sort[(score*ship[i])//sign_up_days[i]] = i
+            t = lib[i][0:(D-d-sign_up_days[i])//ship[i]].copy()
+            for j in range(0, len(t)):
+                score += book_score[t[j]]
+            property_to_sort[score//sign_up_days[i]] = i
         current = property_to_sort[max(list(property_to_sort.keys()))]
         if sdays + sign_up_days[current] < D:
             sdays += sign_up_days[current]
@@ -44,6 +45,7 @@ while True:
             sign_up.append(current)
             sign_dates[current] = sdays
         else:
+            print(total)
             break            
 
         i = current
@@ -52,12 +54,12 @@ while True:
         n = 0
         temp_store = []
 
-        print("day = ", d)
+        #print("day = ", d)
         while True:
             if sign_dates[i] + ship[i] < D:
                 j = 0
                 d += 1
-                print("day = ", d)
+                #print("day = ", d)
                 while (j < ship[i]):
                     if counter + j < len(lib[i]): 
                         n += 1
@@ -79,9 +81,10 @@ while True:
         if lib != {}:
             for i in lib:
                 lib[i] = list(set(lib[i]) - set(temp))    
-        else:        
+        else:
+            print(total)        
             break
-        print(total)
+        #print(total)
 
 file_output = open("answer_c.txt", "w")
 file_output.write(str(len(sign_up)) + "\n")
