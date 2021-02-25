@@ -1,4 +1,4 @@
-file_input = open("c_incunabula.txt", "r")
+file_input = open("d_tough_choices.txt", "r")
 Z = list(map(int, file_input.readline().split()))
 B = Z[0]
 L = Z[1]
@@ -37,12 +37,19 @@ while True:
             for j in range(0, len(t)):
                 score += book_score[t[j]]
             property_to_sort[score//sign_up_days[i]] = i
-        current = property_to_sort[max(list(property_to_sort.keys()))]
-        if sdays + sign_up_days[current] <= D:
-            sdays += sign_up_days[current]
-            sign_up.append(current)
-            sign_dates[current] = sdays
-        else:
+        for i in list(property_to_sort.keys()):   
+            current = property_to_sort[max(list(property_to_sort.keys()))]
+            flag1 = 0
+            if sdays + sign_up_days[current] <= D:
+                flag1 = 1
+                sdays += sign_up_days[current]
+                sign_up.append(current)
+                sign_dates[current] = sdays
+                break
+            else:
+                del property_to_sort[i]  
+        if flag1 == 0:
+            print("sort")
             print(total)
             break            
 
@@ -77,12 +84,14 @@ while True:
             for i in lib:
                 lib[i] = list(set(lib[i]) - set(temp))    
         else:
+            print("remove")
             print(total)        
             break
 
 file_output = open("answer_c.txt", "w")
 file_output.write(str(len(sign_up)) + "\n")
 for i in order:
-    file_output.write(str(i[0]) + " " + str(len(i[1])) + "\n")
-    file_output.write((' '.join(list(map(str, i[1])))) + "\n")
+    if len(i[1]) != 0:
+        file_output.write(str(i[0]) + " " + str(len(i[1])) + "\n")
+        file_output.write((' '.join(list(map(str, i[1])))) + "\n")
 file_output.close()
