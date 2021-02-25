@@ -80,6 +80,6 @@ while True:
 file_output = open("answer_c.txt", "w")
 file_output.write(str(len(sign_up)) + "\n")
 for i in order:
-    file_output.write(i[0] + " " + len(i[1]) + "\n")
-    file_output.write((' '.join(i[1])) + "\n")
+    file_output.write(str(i[0]) + " " + str(len(i[1])) + "\n")
+    file_output.write((' '.join(list(map(str, i[1])))) + "\n")
 file_output.close()
