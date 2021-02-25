@@ -28,6 +28,7 @@ sdays = 0
 sign_dates = {}
 total = 0
 order = []
+d = 0
 
 while True:
         property_to_sort = {}
@@ -39,6 +40,7 @@ while True:
         current = property_to_sort[max(list(property_to_sort.keys()))]
         if sdays + sign_up_days[current] < D:
             sdays += sign_up_days[current]
+            d += sign_up_days[current]
             sign_up.append(current)
             sign_dates[current] = sdays
         else:
@@ -50,9 +52,12 @@ while True:
         n = 0
         temp_store = []
 
+        print("day = ", d)
         while True:
             if sign_dates[i] + ship[i] < D:
                 j = 0
+                d += 1
+                print("day = ", d)
                 while (j < ship[i]):
                     if counter + j < len(lib[i]): 
                         n += 1
@@ -76,6 +81,7 @@ while True:
                 lib[i] = list(set(lib[i]) - set(temp))    
         else:        
             break
+        print(total)
 
 file_output = open("answer_c.txt", "w")
 file_output.write(str(len(sign_up)) + "\n")
